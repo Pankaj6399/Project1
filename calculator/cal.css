@@ -1,0 +1,93 @@
+
+/* CSS Design */
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cal{
+    height: 500px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+    position: relative;
+}
+
+h2{
+    font-size:40px ;
+    text-decoration: underline; 
+    margin: 0px 0px 5px 0px;
+    padding: 0px;
+}
+
+#main{
+    /* */
+    /* margin-top: 200px; */
+    /* border: 2px solid red; */
+    height: 300px;
+    width: 250px;
+    text-align: center;
+}
+
+#main1{
+    height: 280px;
+    width: 250px;
+    border: 2px solid black;
+    background-color: rgb(72, 255, 0);
+    border-radius: 10px;
+
+}
+#inpEmt{
+    margin: 10px 10px 5px 15px;;
+    height: 25px;
+    width: 200px;
+    border-radius: 8px;
+    text-align: right;
+    font-size: 20px;
+    font-weight: 700;
+    border: 2px solid black;
+    background-color: white;
+}
+
+.btn{
+    height: 40px;
+    width: 40px;
+    font-size: 15px;
+    padding: 5px;
+    margin: 5px 0px 0px 15px;
+    border-radius: 50%;
+    font-weight: 700;
+    border: 2px solid black;
+    background-color: rgb(243, 237, 242);
+    cursor: pointer;
+}
+
+.red{
+    background-color: rgb(243, 39, 16);
+}
+.operator{
+    background-color: rgb(229, 237, 77);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* margin-left: 40%; */
+
+    /* text-align: left; */
