@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Cricket Game</title>
+    <link rel="stylesheet" href="BBS.css">
+</head>
+<body style="text-align: center;">
+    <div id="maindiv">
+    <h1>Bat Ball Stump</h1>
+    <button class="choice-button" onclick="
+    let computerchoice=getcomputerchoice();
+    let result=getResult('Bat',computerchoice);
+    showResult('Bat',computerchoice,result);
+    "><img src="bat.jpeg" alt="Bat Image" class="image"></button>
+
+    <button class="choice-button" onclick="
+    computerchoice=getcomputerchoice();
+    result=getResult('Ball',computerchoice);
+    showResult('Ball',computerchoice,result);
+    "><img src="ball.jpeg" alt="Ball Image" class="image"></button></button>
+
+    <button class="choice-button" onclick="
+    computerchoice=getcomputerchoice();
+    result=getResult('Stump',computerchoice);
+    showResult('Stump',computerchoice,result);
+    "><img src="stump.jpeg" alt="Stump Image" class="image"></button></button>
+    <br>
+    <br>
+    <button style="cursor: pointer;"
+        onclick="localStorage.clear()
+        resetScore()">Reset
+    </button>
+    <h3 id="user-move" ></h3>
+    <h3 id="computer-move"></h3>
+    <h3 class="heading"><i>Result:</i></h3>
+    <h3 id="result" style="color: rgb(136, 24, 217);"></h3>
+    <h2 class="heading"><i>Score Board:</i></h2>
+    <h3 id="score" style="color: rgb(144, 8, 242);"></h3>
+    </div>
+<script>
+    let scoreStr=localStorage.getItem('Score');
+    let score;
+    resetScore(scoreStr);
+    function resetScore(scoreStr){
+        score=scoreStr?JSON.parse(scoreStr):{
+            Win:0,
+            Lost:0,
+            Tie:0,
+        
+        };
+        score.displayscore=function(){
+                return `Won: ${score.Win} , Lost: ${score.Lost} , Tie: ${score.Tie} `;
+        }
+        showResult();
+    }
+    
+    
+    function getcomputerchoice(){
+        let randomno= Math.random() * 3;
+    
+        if (randomno>0 && randomno<=1){
+            return 'Bat';
+        }
+        else if (randomno>1 && randomno<=2){
+            return 'Ball';
+        }
+        else{
+            return 'Stump';
+        }
+    }   
+
+    function getResult(usermove,computerchoice){
+        if(usermove==='Bat'){
+            if (computerchoice==='Bat'){
+                score.Tie++;
+                return 'It is Tie';
+            }
+            else if (computerchoice==='Ball'){
+                score.Win++;
+                return 'You Won';
+            }
+            else if (computerchoice==='Stump'){
+                score.Lost++;
+                return 'Computer Won';
+            }
+        }
+        else if(usermove==='Ball'){
+            if (computerchoice==='Bat'){
+                score.Lost++;
+                return 'Computer Won';
+            }
+            else if (computerchoice==='Ball'){
+                score.Tie++;
+                return 'It is Tie';
+            }
+            else if (computerchoice==='Stump'){
+                score.Win++;
+                return 'You Won';
+            }
+        }
+        else{
+            if (computerchoice==='Bat'){
+                score.Win++;
+                return 'You Won';
+            }
+            else if (computerchoice==='Ball'){
+                score.Lost++;
+                return 'Computer Won';
+            }
+            else if (computerchoice==='Stump'){
+                score.Tie++;
+                return 'It is Tie';
+            }
+        }
+    }
+   
+    function showResult(usermove,computerchoice,result){
+        localStorage.setItem('Score',JSON.stringify(score));
+        document.querySelector('#user-move').innerText=usermove?`Your choice is ${usermove}` :'';
+
+        document.querySelector('#computer-move').innerText=computerchoice?`Computer choice is ${computerchoice}`:'';
+        // document.querySelector('#computer-move').innerText=`Computer choice is ${computerchoice}`;
+    
+        
+        document.querySelector('#result').innerText=result||'';
+        
+        document.querySelector('#score').innerText=score.displayscore()
+        
+        
+        // alert(`Your choice is ${usermove}. Computer choice is ${computerchoice} 
+        // Result : ${result}
+        // ScoreBoard :
+        // ${score.displayscore()}`);
+    }
+</script>
+</body>
+</html>
